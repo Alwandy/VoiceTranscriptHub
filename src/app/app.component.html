@@ -1,16 +1,27 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">Voice Transcript Hub</a>        
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a routerLink="/" routerLinkActive="active" class="nav-link" href="#" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/register" routerLinkActive="active" class="nav-link" href="#">Register</a>
+            <a routerLink="/register" routerLinkActive="active" class="nav-link" href="#" *ngIf="!api.loggedIn">Register</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/login" routerLinkActive="active" class="nav-link" href="#">Login</a>
+            <a routerLink="/login" routerLinkActive="active" class="nav-link" href="#" *ngIf="!api.loggedIn">Login</a>
+          </li>
+
+          <!-- Logged in menu -->
+          <li class="nav-item">
+            <a routerLink="/recording" routerLinkActive="active" class="nav-link" *ngIf="api.loggedIn">Recordings</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logout()" href="#" class="nav-link" *ngIf="api.loggedIn">Logout</a>
           </li>
         </ul>
+        <ul class="navbar-nav">
+        <span class="nav-link" *ngIf="api.loggedIn">Welcome {{username}}</span>
+      </ul>
       </nav>      
 <router-outlet></router-outlet>
 
