@@ -1,20 +1,14 @@
 <div class="container" style="padding-top:50px;">
   <h1>Create recording</h1>
-  <div class="alert alert-warning" role="alert" *ngIf="error"><h4>{{error}}</h4></div>
-  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+  <div class="alert alert-warning" role="alert" *ngIf="info"><h4>{{info}}</h4></div>
+  <form [formGroup]="reactiveForm" (ngSubmit)="start()">
     <div class="form-group row">
       <label for="title" class="col-sm-2 col-form-label">Title</label>
       <div class="col-sm-10">
         <input type="title" class="form-control" formControlName="title" placeholder="Enter title">
       </div>
     </div>  
-    <button type="submit" class="btn btn-primary">Start recording</button>
+    <div class="col-sm-10"><button type="submit" class="btn btn-primary" *ngIf="!recording">Start recording</button></div> <div class="col-sm-10"><button class ="btn btn-primary" *ngIf="recording" (click)="stopRecording()">Stop record</button></div>
   </form>
-
-  <div id="controls">
-    <button id="recordButton">Record</button>
-    <button id="pauseButton" disabled>Pause</button>
-    <button id="stopButton" disabled>Stop</button>
-</div>
-
-</div>
+  
+</div> 
