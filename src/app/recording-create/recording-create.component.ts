@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { BlobService, UploadConfig, UploadParams } from 'angular-azure-blob-service'
 import { Router } from '@angular/router';
 import {ApiService} from '../services/api.service';
-import { first } from 'rxjs/operators'
 
 
 
