@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, retry, tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Recording } from './recording.model'
 
-
-const APIURL = "http://localhost:4000";
+const APIURL = "https://voicetranscriptbackend.azurewebsites.net";
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +35,23 @@ export class ApiService {
   public get loggedIn(): boolean {
     return (localStorage.getItem('access_token') !== null);
   }
+
+  public createRecording(recordingPayload) : Observable<boolean> 
+  {
+    var header = { headers: new HttpHeaders().set('Authorization',  'Bearer ' + localStorage.getItem('access_token'))}
+    return this.http.post(APIURL + '/recordings/create', recordingPayload, header).pipe(map(result => {return true}))
+  }
+
+  public getRecordings() : Observable<Recording> 
+  {
+    var header = { headers: new HttpHeaders().set('Authorization',  'Bearer ' + localStorage.getItem('access_token'))}
+    return this.http.get<Recording>(APIURL + '/recordings/' + localStorage.getItem('id'), header).pipe(map(result => {return result}));
+  }
+
+  public deleteRecording(id) : Observable<boolean> 
+  {
+    var header = { headers: new HttpHeaders().set('Authorization',  'Bearer ' + localStorage.getItem('access_token'))}
+    return this.http.delete(APIURL + '/recordings/' + id, header).pipe(map(result => {return true}));
+  }
+
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
 import { BlobModule } from 'angular-azure-blob-service';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { RecordingCreateComponent } from './recording-create/recording-create.co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    OrderModule,
     BlobModule.forRoot(),
     ReactiveFormsModule
   ],

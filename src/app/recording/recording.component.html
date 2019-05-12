@@ -6,11 +6,20 @@
           <th scope="col">#</th>
           <th scope="col">Title</th>
           <th scope="col">Date</th>
-          <th scope="col">Length</th>
-          <th scope="col">Transcription</th>
           <th scope="col">Listen</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
+      <tbody>
+        <tr *ngFor="let recording of recordings | orderBy: createdDate; let i = index">
+          <th scope="row">{{i}}</th>
+          <td>{{recording.title}}</td>
+          <td>{{recording.createdDate}}</td>
+          <td><a href="{{recording.url}}"><i class="fa fa-play" aria-hidden="true"></i></a></td>
+          <td><a (click)="delete(recording.id)" style="color:red"><i class="fas fa-trash"></i></a></td>
+        </tr>
+      </tbody>
     </table>
+
     <a href="/recording/create" class="text-mute">Create a recording</a>
 </div>

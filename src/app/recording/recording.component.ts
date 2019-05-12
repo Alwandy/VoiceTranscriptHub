@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../services/api.service';
+import {Recording} from '../services/recording.model';
+
 
 @Component({
   selector: 'app-recording',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recording.component.sass']
 })
 export class RecordingComponent implements OnInit {
-  
-  constructor() {}
+  recordings : Recording
+
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
+    this.api.getRecordings().subscribe(result => { this.recordings = result});
   }
+
+  private delete(id){
+    this.api.deleteRecording(id).subscribe(result => {location.reload()})
+  }
+
 
 }
