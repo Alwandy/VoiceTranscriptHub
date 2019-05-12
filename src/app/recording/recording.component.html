@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let recording of recordings | orderBy: createdDate; let i = index">
+        <tr *ngFor="let recording of recordings | orderBy: order; let i = index">
           <th scope="row">{{i}}</th>
           <td>{{recording.title}}</td>
           <td>{{recording.createdDate}}</td>

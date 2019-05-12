@@ -10,6 +10,7 @@ import {Recording} from '../services/recording.model';
 })
 export class RecordingComponent implements OnInit {
   recordings : Recording
+  order: string = 'createdDate';
 
   constructor(private api: ApiService) {}
 

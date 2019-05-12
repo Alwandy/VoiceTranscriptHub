@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'VoiceTranscriptHub';
   public username = localStorage.getItem("username");
   
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(public api: ApiService, private router: Router) {}
 
   logout()
   {
